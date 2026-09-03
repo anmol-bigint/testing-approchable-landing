@@ -1,7 +1,7 @@
 {
   "slug": "claude-101-skills-connectors-and-more",
   "title": "Claude 101 - Skills, Connectors and more",
-  "heroImage": "https://wgkuqcwgbokzfxtimklr.supabase.co/storage/v1/object/public/course-images/courses/ed339a3b-4305-4cf7-a589-34f33354bfd8.png",
+  "heroImage": "https://wgkuqcwgbokzfxtimklr.supabase.co/storage/v1/object/public/course-images/courses/ac749f4c-f8ab-4c53-9c67-fb3bcba9ae85.png",
   "isFree": true,
   "instructor": {
     "name": "Ava (Approachable Virtual Assistant)",
@@ -57,6 +57,6 @@
     }
   ],
   "purchaseUrl": "https://learn.approachable.dev/on-demand/claude-101---skills-connectors-and-more",
-  "ogImage": "https://wgkuqcwgbokzfxtimklr.supabase.co/storage/v1/object/public/course-images/courses/ed339a3b-4305-4cf7-a589-34f33354bfd8.png",
+  "ogImage": "https://wgkuqcwgbokzfxtimklr.supabase.co/storage/v1/object/public/course-images/courses/ac749f4c-f8ab-4c53-9c67-fb3bcba9ae85.png",
   "ogDescription": "Learn Claude Skills, Connectors (MCP), Projects, Artifacts, Plugins — plus a quiz to test your knowledge"
 }

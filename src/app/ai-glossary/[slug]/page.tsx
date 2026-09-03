@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     title: `${entry.t}: Plain-English AI Definition`,
     description: `${entry.t}: ${entry.d}`,
-    path: `/glossary/${entry.slug}`,
+    path: `/ai-glossary/${entry.slug}`,
     ogImageAlt: `${entry.t} definition in the Approachable AI Glossary`,
   });
 }
@@ -58,7 +58,7 @@ export default async function GlossaryTermPage({ params }: Props) {
                 See also{' '}
                 {entry.s.map((term, index) => (
                   <span key={term}>
-                    <Link href={`/glossary/${slugify(term)}`}>{term}</Link>
+                    <Link href={`/ai-glossary/${slugify(term)}`}>{term}</Link>
                     {index < entry.s.length - 1 ? ', ' : ''}
                   </span>
                 ))}
@@ -69,7 +69,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           <section className="gl-cta">
             <h2>Explore more AI terms</h2>
             <p>Browse the full glossary for plain-English definitions across models, agents, data, and safety.</p>
-            <Link href="/glossary" className="gl-btn-primary">
+            <Link href="/ai-glossary" className="gl-btn-primary">
               Back to all terms
             </Link>
           </section>

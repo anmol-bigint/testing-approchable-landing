@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
     '/blog': ['./content/posts/**/*'],
     '/blog/[slug]': ['./content/posts/**/*'],
   },
+  async redirects() {
+    return [
+      { source: '/glossary', destination: '/ai-glossary', permanent: true },
+      { source: '/glossary/:slug', destination: '/ai-glossary/:slug', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

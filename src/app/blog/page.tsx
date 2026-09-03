@@ -143,7 +143,7 @@ export default function BlogIndexPage() {
                 <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
                   Use our plain-English glossary for quick definitions while you read.
                 </p>
-                <Link href="/glossary" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
+                <Link href="/ai-glossary" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
                   Open AI Glossary →
                 </Link>
               </div>

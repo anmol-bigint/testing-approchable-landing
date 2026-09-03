@@ -7,8 +7,8 @@ export function buildGlossaryIndexSchema(entries: GlossaryEntry[]) {
     '@graph': [
       {
         '@type': 'WebPage',
-        '@id': absoluteUrl('/glossary#webpage'),
-        url: absoluteUrl('/glossary'),
+        '@id': absoluteUrl('/ai-glossary#webpage'),
+        url: absoluteUrl('/ai-glossary'),
         name: `AI Glossary | ${SITE_NAME}`,
         description: 'Plain-English definitions for AI terms, from agents and tokens to RAG and MCP.',
         isPartOf: {
@@ -20,7 +20,7 @@ export function buildGlossaryIndexSchema(entries: GlossaryEntry[]) {
       },
       {
         '@type': 'ItemList',
-        '@id': absoluteUrl('/glossary#itemlist'),
+        '@id': absoluteUrl('/ai-glossary#itemlist'),
         name: 'AI glossary terms',
         numberOfItems: entries.length,
         itemListElement: entries.map((entry, index) => ({
@@ -30,7 +30,7 @@ export function buildGlossaryIndexSchema(entries: GlossaryEntry[]) {
             '@type': 'DefinedTerm',
             name: entry.t,
             description: entry.d,
-            url: absoluteUrl(`/glossary/${entry.slug}`),
+            url: absoluteUrl(`/ai-glossary/${entry.slug}`),
             ...(entry.a && { alternateName: entry.a }),
           },
         })),
@@ -48,7 +48,7 @@ export function buildGlossaryIndexSchema(entries: GlossaryEntry[]) {
             '@type': 'ListItem',
             position: 2,
             name: 'AI Glossary',
-            item: absoluteUrl('/glossary'),
+            item: absoluteUrl('/ai-glossary'),
           },
         ],
       },
@@ -62,21 +62,21 @@ export function buildGlossaryTermSchema(entry: GlossaryEntry) {
     '@graph': [
       {
         '@type': 'DefinedTerm',
-        '@id': absoluteUrl(`/glossary/${entry.slug}#definedterm`),
+        '@id': absoluteUrl(`/ai-glossary/${entry.slug}#definedterm`),
         name: entry.t,
         description: entry.d,
-        inDefinedTermSet: absoluteUrl('/glossary'),
-        url: absoluteUrl(`/glossary/${entry.slug}`),
+        inDefinedTermSet: absoluteUrl('/ai-glossary'),
+        url: absoluteUrl(`/ai-glossary/${entry.slug}`),
         ...(entry.a && { alternateName: entry.a }),
       },
       {
         '@type': 'WebPage',
-        '@id': absoluteUrl(`/glossary/${entry.slug}#webpage`),
-        url: absoluteUrl(`/glossary/${entry.slug}`),
+        '@id': absoluteUrl(`/ai-glossary/${entry.slug}#webpage`),
+        url: absoluteUrl(`/ai-glossary/${entry.slug}`),
         name: `${entry.t} definition | ${SITE_NAME}`,
         description: entry.d,
         mainEntity: {
-          '@id': absoluteUrl(`/glossary/${entry.slug}#definedterm`),
+          '@id': absoluteUrl(`/ai-glossary/${entry.slug}#definedterm`),
         },
       },
       {
@@ -92,13 +92,13 @@ export function buildGlossaryTermSchema(entry: GlossaryEntry) {
             '@type': 'ListItem',
             position: 2,
             name: 'AI Glossary',
-            item: absoluteUrl('/glossary'),
+            item: absoluteUrl('/ai-glossary'),
           },
           {
             '@type': 'ListItem',
             position: 3,
             name: entry.t,
-            item: absoluteUrl(`/glossary/${entry.slug}`),
+            item: absoluteUrl(`/ai-glossary/${entry.slug}`),
           },
         ],
       },

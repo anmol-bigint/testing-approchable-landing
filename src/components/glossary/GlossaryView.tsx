@@ -191,7 +191,7 @@ export default function GlossaryView({ entries }: GlossaryViewProps) {
                   <article className="gl-card" id={entry.slug} key={entry.slug}>
                     <div className="gl-card-head">
                       <h3 className="gl-term">
-                        <Link href={`/glossary/${entry.slug}`}>
+                        <Link href={`/ai-glossary/${entry.slug}`}>
                           {highlight(entry.t, query)}
                         </Link>
                       </h3>
@@ -208,7 +208,7 @@ export default function GlossaryView({ entries }: GlossaryViewProps) {
                         See also{' '}
                         {entry.s.map((term, index) => (
                           <span key={term}>
-                            <Link href={`/glossary/${slugify(term)}`}>{term}</Link>
+                            <Link href={`/ai-glossary/${slugify(term)}`}>{term}</Link>
                             {index < entry.s.length - 1 ? ', ' : ''}
                           </span>
                         ))}

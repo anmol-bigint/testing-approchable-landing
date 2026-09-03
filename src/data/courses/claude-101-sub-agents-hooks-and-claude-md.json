@@ -1,7 +1,7 @@
 {
   "slug": "claude-101-sub-agents-hooks-and-claude-md",
   "title": "Claude 101 - Sub Agents, Hooks and Claude.MD",
-  "heroImage": "https://wgkuqcwgbokzfxtimklr.supabase.co/storage/v1/object/public/course-images/courses/ac749f4c-f8ab-4c53-9c67-fb3bcba9ae85.png",
+  "heroImage": "https://wgkuqcwgbokzfxtimklr.supabase.co/storage/v1/object/public/course-images/courses/ed339a3b-4305-4cf7-a589-34f33354bfd8.png",
   "isFree": true,
   "instructor": {
     "name": "Ava (Approachable Virtual Assistant)",
@@ -55,6 +55,6 @@
     }
   ],
   "purchaseUrl": "https://learn.approachable.dev/on-demand/claude-101---sub-agents-hooks-and-claudemd",
-  "ogImage": "https://wgkuqcwgbokzfxtimklr.supabase.co/storage/v1/object/public/course-images/courses/ac749f4c-f8ab-4c53-9c67-fb3bcba9ae85.png",
+  "ogImage": "https://wgkuqcwgbokzfxtimklr.supabase.co/storage/v1/object/public/course-images/courses/ed339a3b-4305-4cf7-a589-34f33354bfd8.png",
   "ogDescription": "Learn Claude.MD, Hooks, and Sub Agents — plus a quiz to test your Claude 101 knowledge"
 }

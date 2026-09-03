@@ -48,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: absoluteUrl('/glossary'),
+      url: absoluteUrl('/ai-glossary'),
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -119,7 +119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
   const glossaryTermRoutes: MetadataRoute.Sitemap = glossaryEntries.map((entry) => ({
-    url: absoluteUrl(`/glossary/${entry.slug}`),
+    url: absoluteUrl(`/ai-glossary/${entry.slug}`),
     lastModified,
     changeFrequency: 'monthly',
     priority: 0.65,

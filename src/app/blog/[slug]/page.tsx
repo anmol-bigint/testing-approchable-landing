@@ -148,7 +148,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
                   Browse the AI Glossary for plain-English explanations of common terms in this post.
                 </p>
-                <Link href="/glossary" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
+                <Link href="/ai-glossary" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
                   Open AI Glossary →
                 </Link>
               </div>
@@ -164,7 +164,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
                   Definitions for terms like tokens, RAG, MCP, agents, and more.
                 </p>
-                <Link href="/glossary" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
+                <Link href="/ai-glossary" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
                   Browse glossary →
                 </Link>
               </div>

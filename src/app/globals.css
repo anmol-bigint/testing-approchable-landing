@@ -1035,7 +1035,7 @@ section {
 }
 @media (min-width: 1024px) {
   .footer-columns {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr);
   }
   .footer-subscribe { grid-column: span 1; max-width: none; }
 }

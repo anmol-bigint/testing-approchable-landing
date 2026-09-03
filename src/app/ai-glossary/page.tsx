@@ -13,7 +13,7 @@ const GLOSSARY_DESCRIPTION = `Plain-English AI definitions for ${GLOSSARY_TERM_C
 export const metadata: Metadata = buildPageMetadata({
   title: `AI Glossary: Plain-English Definitions (${GLOSSARY_TERM_COUNT} Terms)`,
   description: GLOSSARY_DESCRIPTION,
-  path: '/glossary',
+  path: '/ai-glossary',
   ogImageAlt: 'AI Glossary from Approachable',
 });
 
