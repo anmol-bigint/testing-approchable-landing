@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { COHORT } from '@/lib/cohort-config';
 import { buildCohortSchema } from '@/lib/seo/cohort-schema';
 import Banner from '@/components/Banner';
@@ -135,18 +137,33 @@ const CAPSTONE = {
   ],
 };
 
-const FAQ = [
+type HomeFaqItem = {
+  q: string;
+  a: string;
+  renderA?: ReactNode;
+};
+
+const FAQ: HomeFaqItem[] = [
   { q: 'Who is this cohort for?', a: 'Anyone who uses or wants to use AI & Claude seriously — developers, PMs, founders, consultants, and tech professionals who want to go beyond chat prompts and actually build with the Claude ecosystem.' },
   { q: 'Do I need to know how to code?', a: "Helpful but not required. Claude Code sessions assume basic familiarity with files and terminals. Everything else is accessible to non-developers. We'll calibrate to the group." },
   { q: 'How long is the program?', a: '4 live sessions (90 mins each), followed by a 2-week capstone build period and a final demo session. Roughly 6–7 weeks start to finish.' },
   { q: 'Why is the fee non-refundable?', a: "We cap at 20 seats. When someone takes a seat and doesn't show, it costs another learner their spot. The commitment fee protects the group experience — it's the same reason the cohort model works." },
-  { q: "What's the Approachable learning platform?", a: 'All enrolled students get access to a dedicated hub with quizzes, a progress tracker, leaderboard, an interactive prompting guide, and sample prompts to practice between sessions.' },
+  {
+    q: "What's the Approachable learning platform?",
+    a: 'All enrolled students get access to a dedicated hub with quizzes, a progress tracker, leaderboard, an interactive prompting guide, and sample prompts to practice between sessions.',
+    renderA: (
+      <>
+        All enrolled students get access to a dedicated hub with quizzes, a progress tracker, leaderboard, an{' '}
+        <Link href="/prompting-guide">interactive prompting guide</Link>, and sample prompts to practice between sessions.
+      </>
+    ),
+  },
   { q: 'I was in a previous cohort — can I join this one?', a: "Yes, and we'd love to have you back. Reach out directly" },
   { q: 'How do I contact you?', a: 'Contact us at BIGINT Solutions. www.bigintsolutions.com' },
 ];
 
 export default function HomePage() {
-  const cohortSchema = buildCohortSchema(FAQ);
+  const cohortSchema = buildCohortSchema(FAQ.map(({ q, a }) => ({ q, a })));
 
   return (
     <>
@@ -429,7 +446,7 @@ export default function HomePage() {
               {FAQ.map((item, i) => (
                 <div key={i} className="faq-item">
                   <h3 className="faq-q">{item.q}</h3>
-                  <div className="faq-a">{item.a}</div>
+                  <div className="faq-a">{item.renderA ?? item.a}</div>
                 </div>
               ))}
             </div>

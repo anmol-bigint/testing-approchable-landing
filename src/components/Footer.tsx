@@ -56,7 +56,7 @@ export default function Footer() {
         { label: 'Blog', href: '/blog' },
         ...latestPosts,
         { label: 'AI Glossary', href: '/ai-glossary' },
-        { label: 'Prompting Guide', href: 'https://learn.approachable.dev/resources' },
+        { label: 'Prompting Guide', href: '/prompting-guide' },
       ],
     },
     {

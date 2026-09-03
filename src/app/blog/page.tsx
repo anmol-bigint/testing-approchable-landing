@@ -147,6 +147,17 @@ export default function BlogIndexPage() {
                   Open AI Glossary →
                 </Link>
               </div>
+              <div className="rounded-xl border p-5" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-warm)' }}>
+                <h2 className="text-base font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                  Practice prompting
+                </h2>
+                <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
+                  Improve your prompts with guided exercises and side-by-side weak vs strong examples.
+                </p>
+                <Link href="/prompting-guide" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
+                  Open Prompting Guide →
+                </Link>
+              </div>
               <SubscribeForm />
               <LatestPosts />
               <TagCounts />

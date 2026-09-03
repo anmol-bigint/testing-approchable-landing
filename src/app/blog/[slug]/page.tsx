@@ -168,6 +168,17 @@ export default async function BlogPostPage({ params }: Props) {
                   Browse glossary →
                 </Link>
               </div>
+              <div className="rounded-xl border p-5" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-warm)' }}>
+                <h2 className="text-base font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>
+                  Practice prompting
+                </h2>
+                <p className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>
+                  Use interactive exercises to improve prompts for writing, analysis, and troubleshooting tasks.
+                </p>
+                <Link href="/prompting-guide" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
+                  Open Prompting Guide →
+                </Link>
+              </div>
               <SubscribeForm />
               <LatestPosts />
               <TagCounts />
