@@ -40,6 +40,7 @@ export default function Footer() {
       heading: 'Programs',
       links: [
         { label: 'Live AI Cohort', href: '/' },
+        { label: 'All Courses', href: '/courses' },
         { label: 'AI Mastery for Working Professionals', href: '/courses/ai-mastery-for-working-professionals' },
         {
           label: 'No Code AI Agents Mastery for Working Professionals',
