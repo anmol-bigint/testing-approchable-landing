@@ -1,7 +1,12 @@
 import { get, list } from '@vercel/blob';
 import type { CorporateInquiryRecord } from '@/lib/corporate-inquiry';
 import type { ContactInquiryRecord } from '@/lib/contact-inquiry';
-import { BLOB_FOLDERS, isLegacyFlatBlobPath, type SubmissionFolder } from '@/lib/blob-paths';
+import {
+  BLOB_FOLDERS,
+  isLegacyFlatBlobPath,
+  LEGACY_CONTACT_FOLDER,
+  type SubmissionFolder,
+} from '@/lib/blob-paths';
 import type { SubmissionRecord } from '@/lib/submissions-types';
 import { isContactSubmission, isCorporateSubmission } from '@/lib/submissions-types';
 import { blobOptions } from '@/lib/blob-client';
@@ -21,14 +26,14 @@ function sortByNewest(submissions: SubmissionRecord[]): SubmissionRecord[] {
   return submissions.sort((a, b) => Date.parse(b.submittedAt) - Date.parse(a.submittedAt));
 }
 
-async function listFromFolder(folder: SubmissionFolder): Promise<SubmissionRecord[]> {
-  const prefix = `${BLOB_FOLDERS[folder]}/`;
+async function listFromPrefix(
+  prefix: string,
+  filterBlob?: (pathname: string) => boolean,
+): Promise<SubmissionRecord[]> {
   const { blobs } = await list({ prefix, ...blobOptions() });
-
-  const relevantBlobs =
-    folder === 'legacy'
-      ? blobs.filter((blob) => isLegacyFlatBlobPath(blob.pathname))
-      : blobs.filter((blob) => blob.pathname.endsWith('.json'));
+  const relevantBlobs = blobs.filter(
+    (blob) => blob.pathname.endsWith('.json') && (!filterBlob || filterBlob(blob.pathname)),
+  );
 
   const submissions = await Promise.all(
     relevantBlobs.map(async (blob) => {
@@ -55,14 +60,27 @@ async function listFromFolder(folder: SubmissionFolder): Promise<SubmissionRecor
   return sortByNewest(submissions);
 }
 
+async function listFromFolder(folder: SubmissionFolder): Promise<SubmissionRecord[]> {
+  const prefix = `${BLOB_FOLDERS[folder]}/`;
+  const filterBlob =
+    folder === 'legacy' ? (pathname: string) => isLegacyFlatBlobPath(pathname) : undefined;
+  return listFromPrefix(prefix, filterBlob);
+}
+
 export async function getContactSubmissions(): Promise<ContactInquiryRecord[]> {
-  const [fromFolder, legacy] = await Promise.all([
+  const [fromFolder, fromLegacyContact] = await Promise.all([
     listFromFolder('contact'),
-    listFromFolder('legacy'),
+    listFromPrefix(`${LEGACY_CONTACT_FOLDER}/`),
   ]);
 
-  const legacyContact = legacy.filter(isContactSubmission);
-  return sortByNewest([...fromFolder.filter(isContactSubmission), ...legacyContact]) as ContactInquiryRecord[];
+  const byId = new Map<string, ContactInquiryRecord>();
+  for (const record of [...fromFolder, ...fromLegacyContact]) {
+    if (isContactSubmission(record)) {
+      byId.set(record.id, record);
+    }
+  }
+
+  return sortByNewest([...byId.values()]) as ContactInquiryRecord[];
 }
 
 export async function getCorporateSubmissions(): Promise<CorporateInquiryRecord[]> {

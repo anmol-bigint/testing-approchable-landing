@@ -8,8 +8,8 @@
     "email": "ranbeer@gmail.com"
   },
   "pricing": {
-    "inr": { "original": "₹4,998", "current": "₹2,499" },
-    "usd": { "original": "$158", "current": "$79" },
+    "inr": { "original": "₹2,998", "current": "₹1,499" },
+    "usd": { "original": "$138", "current": "$69" },
     "discountPercent": 50
   },
   "discountLabel": "🎉 Launch Offer — 50% OFF for early learners. Limited time.",

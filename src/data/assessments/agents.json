@@ -1,0 +1,102 @@
+{
+  "slug": "agents",
+  "topic": "Agentic AI",
+  "title": "Agentic AI",
+  "lede": "Where a workflow ends and an agent begins. A few questions on tools, memory, loops and the failure modes nobody warns you about.",
+  "level": "Working professionals",
+  "minutes": 7,
+  "description": "Where a workflow ends and an agent begins. Test what you know about tools, memory, loops and the failure modes nobody warns you about.",
+  "questions": [
+    {
+      "q": "A business analyst gives an AI system a goal and access to multiple tools. The system decides which tools to use, determines the sequence of actions, and adjusts its approach based on what it finds. What makes this an agent rather than a simple automation?",
+      "options": [
+        "It can reason, make decisions, and choose which tools to use based on context",
+        "It is triggered by an external event like a form submission or a schedule",
+        "It follows a fixed, predefined sequence of steps from A to B to C",
+        "It requires an API key to connect to an external service like OpenAI or Google"
+      ],
+      "answer": 0,
+      "why": "Autonomy over the path — not just the trigger — is what defines an agent. A scheduled or event-triggered process that always does the same fixed steps is still just automation."
+    },
+    {
+      "q": "You've connected a project folder in Cowork containing your team's working documents. Which statement best describes what Claude can do within that connected folder?",
+      "options": [
+        "Read the files in it, but not make any changes",
+        "See file names only, not their contents",
+        "Access every folder on your computer from that point on",
+        "Read and write files in that folder (and it asks before deleting)"
+      ],
+      "answer": 3,
+      "why": "Access is scoped to the connected folder, and deletion requires confirmation. This kind of bounded permission is exactly the guardrail that makes giving an agent real write access workable."
+    },
+    {
+      "q": "A company receives hundreds of customer emails. An AI system first determines whether each email relates to billing, technical support, or account management and then sends it to a specialised agent for that category. Which agentic workflow does this represent?",
+      "options": [
+        "Orchestrator-Workers",
+        "Parallelization (Voting)",
+        "Prompt Chaining",
+        "Routing"
+      ],
+      "answer": 3,
+      "why": "Classify first, then hand off to a specialist path for that category — that's Routing. It's one of the simplest and most common patterns for high-volume, mixed-type work like invoices, tickets, or emails."
+    },
+    {
+      "q": "Your organisation is designing an AI workflow for a complex business process involving research, analysis, content creation, and quality checks. Why might a multi-agent approach be preferable to a single agent handling the entire process?",
+      "options": [
+        "Specialised agents focusing on specific tasks produce a better overall result than one agent trying to do everything",
+        "It is impossible for a single agent to follow a complex, multi-step plan",
+        "It is always cheaper to run multiple smaller agents than one large one",
+        "Single agents are unable to use external tools like web search"
+      ],
+      "answer": 0,
+      "why": "Splitting a complex process into focused, specialised roles tends to produce better results than asking one generalist agent to juggle everything — the same reason teams have specialists instead of one person doing every job."
+    },
+    {
+      "q": "You've configured a scheduled Cowork task to run every weekday morning. Which condition is important for the scheduled task to execute?",
+      "options": [
+        "You're in the conversation watching it",
+        "Nothing — scheduled tasks run in the cloud regardless",
+        "You're on an Enterprise plan",
+        "The Claude desktop app is open and your computer is awake"
+      ],
+      "answer": 3,
+      "why": "Scheduled tasks aren't fully cloud-independent — the desktop app needs to be open and the machine awake. It's exactly the kind of infrastructure detail that causes an agent to silently fail to run."
+    },
+    {
+      "q": "A finance director wants an agent to review expense reports and auto-approve anything under a set threshold, escalating anything unusual to a human. What design principle does this represent?",
+      "options": [
+        "Full autonomy with no guardrails",
+        "Bounded autonomy — the agent acts within a defined scope and escalates outside it",
+        "Zero-shot prompting",
+        "Context window management"
+      ],
+      "answer": 1,
+      "why": "Giving an agent real authority without limits is how small errors become expensive ones. Bounded autonomy — a clear scope plus an escalation path — is what makes agentic systems safe to deploy in a business with real money and real risk."
+    },
+    {
+      "q": "A team lead sets up an agent that receives a complex market research request, breaks it into sub-tasks (industry trends, competitor analysis, pricing data), delegates each to a separate worker agent, then combines their outputs into a final report. Which agentic workflow pattern is this?",
+      "options": [
+        "Routing",
+        "Orchestrator-Workers",
+        "Reflexion",
+        "Chain-of-Thought"
+      ],
+      "answer": 1,
+      "why": "A central 'orchestrator' that decomposes a task, hands pieces to specialised 'worker' agents, and synthesizes their results is the Orchestrator-Workers pattern — useful when the sub-tasks aren't known in advance and need dynamic breakdown."
+    }
+  ],
+  "recs": {
+    "low": [
+      { "tag": "Live cohort", "title": "Live AI Cohort", "desc": "Learn it with a mentor and a group instead of piecing it together alone.", "url": "https://learn.approachable.dev/registration" },
+      { "tag": "Free course", "title": "Introduction to AI Agents", "desc": "The fundamentals — how agents differ from LLMs, and workflows versus agents.", "url": "/courses/introduction-to-ai-agents" }
+    ],
+    "mid": [
+      { "tag": "Live cohort", "title": "Live AI Cohort", "desc": "You know enough to get stuck. A mentor and a small group get you building instead of circling the same tutorials.", "url": "https://learn.approachable.dev/registration" },
+      { "tag": "Self-paced", "title": "No-Code AI Agents Mastery", "desc": "Build real no-code agents in n8n, from a first LLM call to a customer retention agent.", "url": "/courses/no-code-ai-agents-mastery-for-working-professionals" }
+    ],
+    "high": [
+      { "tag": "Live cohort", "title": "Live AI Cohort", "desc": "You know the theory. Come build an agent for your own work with a mentor watching.", "url": "https://learn.approachable.dev/registration" },
+      { "tag": "Self-paced", "title": "Vibe Coding Mastery", "desc": "Add building to automating and you can ship the whole thing yourself.", "url": "/courses/vibe-coding-mastery-for-working-professionals" }
+    ]
+  }
+}

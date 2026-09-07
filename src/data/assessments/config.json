@@ -1,0 +1,26 @@
+{
+  "instantFeedback": false,
+  "bands": [
+    {
+      "max": 49,
+      "key": "low",
+      "label": "Where you stand",
+      "title": "Start with the fundamentals.",
+      "text": "There are real gaps here — which is useful to know. A short free course will close most of them fast, and the live cohort gives you structure if self-study never sticks."
+    },
+    {
+      "max": 79,
+      "key": "mid",
+      "label": "Where you stand",
+      "title": "You know the basics. Now get the reps.",
+      "text": "You're past the beginner stage but it isn't automatic yet. The self-paced course turns this into something you use at work without thinking about it."
+    },
+    {
+      "max": 100,
+      "key": "high",
+      "label": "Where you stand",
+      "title": "Strong. Time to go deeper.",
+      "text": "You've got a working grasp of this. The next gain comes from harder material and real projects rather than more fundamentals."
+    }
+  ]
+}

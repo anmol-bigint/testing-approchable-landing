@@ -4,6 +4,7 @@ import AdminSecretForm from '@/components/admin/AdminSecretForm';
 import SubmissionsTabs from '@/components/admin/SubmissionsTabs';
 import { adminSecretRequired, isAdminAuthorized } from '@/lib/admin-auth';
 import { getContactSubmissions, getCorporateSubmissions } from '@/lib/submissions';
+import { getBlogSubscribers } from '@/lib/subscribers';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -32,7 +33,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
                 <div className="section-label">Admin</div>
                 <h1 className="section-title">Form submissions</h1>
                 <p className="section-sub" style={{ margin: '0 auto' }}>
-                  Contact and team training inquiries, organized by form type.
+                  Contact and team training inquiries, plus blog subscribers.
                 </p>
               </div>
 
@@ -50,12 +51,14 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
 
   let contactSubmissions: Awaited<ReturnType<typeof getContactSubmissions>> = [];
   let corporateSubmissions: Awaited<ReturnType<typeof getCorporateSubmissions>> = [];
+  let blogSubscribers: Awaited<ReturnType<typeof getBlogSubscribers>> = [];
   let loadError: string | null = null;
 
   try {
-    [contactSubmissions, corporateSubmissions] = await Promise.all([
+    [contactSubmissions, corporateSubmissions, blogSubscribers] = await Promise.all([
       getContactSubmissions(),
       getCorporateSubmissions(),
+      getBlogSubscribers(),
     ]);
   } catch (error) {
     console.error('Failed to load submissions:', error);
@@ -73,7 +76,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
               <div className="section-label">Admin</div>
               <h1 className="section-title">Form submissions</h1>
               <p className="section-sub" style={{ margin: '0 auto' }}>
-                Contact and team training inquiries, organized by form type.
+                Contact and team training inquiries, plus blog subscribers.
               </p>
             </div>
 
@@ -84,6 +87,7 @@ export default async function AdminSubmissionsPage({ searchParams }: PageProps) 
                 <SubmissionsTabs
                   contactSubmissions={contactSubmissions}
                   corporateSubmissions={corporateSubmissions}
+                  blogSubscribers={blogSubscribers}
                 />
               </div>
             )}

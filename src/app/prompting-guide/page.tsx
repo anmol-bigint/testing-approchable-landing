@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import JsonLd from '@/components/JsonLd';
 import PromptingGuideView from '@/components/prompting-guide/PromptingGuideView';
@@ -49,6 +50,33 @@ export default function PromptingGuidePage() {
 
         <section className="pg-page-content">
           <PromptingGuideView />
+          <div className="container-max">
+            <section className="pg-cta" aria-labelledby="pg-cta-heading">
+              <div className="pg-cta-inner">
+                <div className="pg-cta-copy">
+                  <span className="pg-cta-label">Next step</span>
+                  <h2 id="pg-cta-heading">
+                    You&apos;ve practiced the prompts. <span>Now see where you stand.</span>
+                  </h2>
+                  <p>Free seven-question skill checks on AI foundations, prompt engineering, agentic AI, and more.</p>
+                  <ul className="pg-cta-stats" aria-label="Assessment summary">
+                    <li>4 assessments</li>
+                    <li>7 questions each</li>
+                    <li>Free</li>
+                  </ul>
+                  <Link href="/assessment" className="btn-primary pg-cta-btn">
+                    See all assessments →
+                  </Link>
+                </div>
+                <ul className="pg-cta-topics" aria-label="Available assessments">
+                  <li>AI Foundation</li>
+                  <li>Prompt Engineering</li>
+                  <li>Agentic AI</li>
+                  <li>Vibe Coding</li>
+                </ul>
+              </div>
+            </section>
+          </div>
         </section>
       </main>
     </>

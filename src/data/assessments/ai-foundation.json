@@ -1,0 +1,102 @@
+{
+  "slug": "ai-foundation",
+  "topic": "Foundations",
+  "title": "AI Foundation",
+  "lede": "A few questions on how LLMs actually work — tokens, hallucinations, when to use AI, and where your judgment still has to sit.",
+  "level": "Working professionals",
+  "minutes": 7,
+  "description": "How LLMs work, why they invent facts, and when a checklist beats another chat. The mental model everything else builds on.",
+  "questions": [
+    {
+      "q": "A colleague says: 'Generative AI is a completely separate field from AI and has nothing to do with machine learning.' Which sequence best represents the relationship between these concepts, from broadest to more specific?",
+      "options": [
+        "AI > Machine Learning > Gen AI > Deep Learning",
+        "AI > Deep Learning > Machine Learning > Gen AI",
+        "AI > Machine Learning > Deep Learning > Gen AI",
+        "Machine Learning > Gen AI > Deep Learning > AI"
+      ],
+      "answer": 2,
+      "why": "Deep learning is a subset of machine learning, and generative AI is a subset of deep learning built for creating content. Each one narrows the field before it."
+    },
+    {
+      "q": "An organization wants to build an LLM from scratch. Before any instruction tuning or assistant behavior is added, the model is trained on enormous amounts of text. What is the primary objective of this pre-training stage?",
+      "options": [
+        "To remove all factual hallucinations from the model's internal parameters",
+        "To create a statistical simulator of internet text by predicting the next token in a sequence",
+        "To fine-tune the model to behave as a helpful and harmless personal assistant",
+        "To teach the model how to use external tools like web search and code execution"
+      ],
+      "answer": 1,
+      "why": "Pre-training is purely about predicting the next token across huge amounts of text. Helpfulness, safety, and tool use are added afterward, in separate stages."
+    },
+    {
+      "q": "An executive asks an LLM for a market statistic. The model doesn't actually have reliable information about the statistic but confidently produces a plausible-looking number. Why can this happen?",
+      "options": [
+        "Researchers deliberately program LLMs to lie",
+        "LLMs generate likely sequences of text and can produce confident-sounding answers even when the underlying information is incorrect or unavailable",
+        "The model's memory resets after every 1,000 tokens",
+        "GPU hardware randomly changes factual information"
+      ],
+      "answer": 1,
+      "why": "The model is optimizing for plausible-sounding text, not verified truth. Confidence in tone has nothing to do with whether the fact is real."
+    },
+    {
+      "q": "You're working with Claude on a 200-page strategy document. Claude can reference information from the material you're currently working with, but this should not be confused with everything the model permanently 'knows.' Which analogy best describes the context window?",
+      "options": [
+        "As a hidden log of the model's inner reasoning that humans cannot see",
+        "As the working memory of the model",
+        "As the physical RAM on the GPU where the model is hosted",
+        "As the permanent storage of the model's learned knowledge"
+      ],
+      "answer": 1,
+      "why": "The context window is temporary working memory for the current conversation — not the same as the permanent knowledge baked into the model's weights during training."
+    },
+    {
+      "q": "You paste a long document into Claude. Before Claude can process the text, how is the input represented internally for the language model?",
+      "options": [
+        "Claude immediately generates the answer",
+        "Claude first translates everything into English",
+        "The text is broken into tokens that the model processes",
+        "Claude converts the text into images"
+      ],
+      "answer": 2,
+      "why": "Tokens — not words or characters — are the model's real unit of processing. This is also why context limits are measured in tokens, not pages."
+    },
+    {
+      "q": "You share a business idea with an AI assistant, and it immediately responds, 'That's a fantastic idea!' without challenging any assumptions. What behavior might this demonstrate?",
+      "options": [
+        "Sycophancy",
+        "Context loss",
+        "Hallucination",
+        "Pre-training"
+      ],
+      "answer": 0,
+      "why": "Models are trained on data that rewards agreeable, high-confidence responses, so they default to flattering you rather than stress-testing your idea. Asking neutrally framed follow-up questions helps counter this."
+    },
+    {
+      "q": "You ask an AI assistant about a news event from last week, and it gives a confident, detailed answer — but the event actually happened after its knowledge cutoff. What is the most likely explanation?",
+      "options": [
+        "It secretly connected to the internet without telling you",
+        "It generated a plausible-sounding response based on patterns rather than actual knowledge of the event",
+        "It refuses to answer questions about recent events",
+        "It automatically flags all such answers as low-confidence"
+      ],
+      "answer": 1,
+      "why": "Without a search or browsing tool attached, a model can't know about anything past its training cutoff — but it will still produce fluent, confident-sounding text, which is exactly what makes this failure mode easy to miss."
+    }
+  ],
+  "recs": {
+    "low": [
+      { "tag": "Live cohort", "title": "Live AI Cohort", "desc": "Get the mental model with a mentor instead of piecing YouTube together. Session 1 is built for this gap.", "url": "https://learn.approachable.dev/registration" },
+      { "tag": "Free course", "title": "Claude Ecosystem", "desc": "Chat, Code, Cowork and Design — which tool for which job, before you go deeper.", "url": "/courses/claude-ecosystem---chat-code-cowork" }
+    ],
+    "mid": [
+      { "tag": "Live cohort", "title": "Live AI Cohort", "desc": "You have the basics. A small group and a mentor turn them into something you use at work every week.", "url": "https://learn.approachable.dev/registration" },
+      { "tag": "Self-paced", "title": "AI Mastery for Working Professionals", "desc": "Hands-on practice applying AI to the writing, research and analysis you already do.", "url": "/courses/ai-mastery-for-working-professionals" }
+    ],
+    "high": [
+      { "tag": "Live cohort", "title": "Live AI Cohort", "desc": "The foundation is solid. Come build on it with a mentor and a real project, not another article.", "url": "https://learn.approachable.dev/registration" },
+      { "tag": "Free course", "title": "Introduction to AI Agents", "desc": "Next layer: how agents differ from LLMs, and when a workflow is enough.", "url": "/courses/introduction-to-ai-agents" }
+    ]
+  }
+}

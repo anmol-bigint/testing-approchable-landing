@@ -32,6 +32,8 @@ When Claude's answer is close but not quite right, don't reply with a correction
 
 Here's why it matters. Editing replaces that turn cleanly. Replying stacks another message on top of the last one — and Claude re-reads the whole thread every time either way. A tighter thread is a cheaper thread.
 
+![Editing and resending your original message replaces that turn, while replying stacks a new message on top of a growing thread](/images/posts/how-to-optimize-token-usage-in-claude-chat-edit-vs-reply.webp)
+
 ## 4. Start a new chat per topic
 
 Claude re-reads your entire conversation on every single message. So message forty in a long thread costs far more than message one did — you're paying for all thirty-nine that came before it, every time.

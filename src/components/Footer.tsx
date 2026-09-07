@@ -1,17 +1,17 @@
-import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
-import FooterSubscribe from './FooterSubscribe';
+import Link from "next/link";
+import { getAllPosts } from "@/lib/posts";
+import FooterSubscribe from "./FooterSubscribe";
 
 type FooterLink =
   | { label: string; href: string }
   | { label: string; static: true };
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
-  if ('static' in link) {
+  if ("static" in link) {
     return <span className="footer-static-link">{link.label}</span>;
   }
 
-  if (link.href.startsWith('mailto:')) {
+  if (link.href.startsWith("mailto:")) {
     return <a href={link.href}>{link.label}</a>;
   }
 
@@ -52,12 +52,13 @@ export default function Footer() {
       ],
     },
     {
-      heading: 'Resources',
+      heading: "Resources",
       links: [
-        { label: 'Blog', href: '/blog' },
+        { label: "Blog", href: "/blog" },
         ...latestPosts,
-        { label: 'AI Glossary', href: '/ai-glossary' },
-        { label: 'Prompting Guide', href: '/prompting-guide' },
+        { label: "AI Glossary", href: "/ai-glossary" },
+        { label: "Prompting Guide", href: "/prompting-guide" },
+        { label: "AI Assessments", href: "/assessment" },
       ],
     },
     {
@@ -89,7 +90,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <p className="footer-copyright">© 2026 Approachable · making AI approachable for everyone</p>
+      <p className="footer-copyright">
+        © 2026 Approachable · making AI approachable for everyone
+      </p>
     </footer>
   );
 }

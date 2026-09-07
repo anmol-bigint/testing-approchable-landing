@@ -1565,21 +1565,34 @@ section {
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+.admin-submission-card.is-expanded {
+  border-color: rgba(223, 121, 88, 0.35);
 }
 .admin-submission-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
-  padding: 20px 24px;
+  padding: 16px 20px;
+  background: var(--bg);
+  border-bottom: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.admin-submission-header:hover {
   background: var(--bg-warm);
+}
+.admin-submission-card.is-expanded .admin-submission-header {
   border-bottom: 1px solid var(--border);
+  background: var(--bg-warm);
 }
 .admin-submission-num {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--accent);
-  color: white;
+  background: var(--bg-section, #f4f4f0);
+  color: var(--text-secondary);
   font-size: 13px;
   font-weight: 700;
   display: flex;
@@ -1587,8 +1600,18 @@ section {
   justify-content: center;
   flex-shrink: 0;
 }
+.admin-submission-summary {
+  min-width: 0;
+  flex: 1;
+}
+.admin-submission-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
 .admin-submission-company {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -1621,17 +1644,53 @@ section {
   text-decoration: underline;
 }
 .admin-submission-date {
-  margin-left: auto;
   font-size: 12px;
   color: var(--text-muted);
   white-space: nowrap;
   flex-shrink: 0;
 }
+.admin-submission-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.admin-submission-chevron {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+.admin-submission-chevron.is-expanded {
+  transform: rotate(180deg);
+}
+.admin-delete-btn {
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  background: rgba(220, 38, 38, 0.08);
+  color: #b91c1c;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.admin-delete-btn:hover:not(:disabled) {
+  background: rgba(220, 38, 38, 0.14);
+  border-color: rgba(220, 38, 38, 0.5);
+}
+.admin-delete-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.admin-submission-details {
+  padding: 0 20px 20px;
+}
 .admin-submission-body {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px 24px;
-  padding: 20px 24px 0;
+  padding: 16px 0 0;
   margin: 0;
 }
 .admin-field {
@@ -1657,7 +1716,7 @@ section {
   padding: 16px 24px 0;
 }
 .admin-submission-requirements {
-  padding: 16px 24px 20px;
+  padding: 16px 0 0;
 }
 .admin-submission-requirements p {
   margin: 6px 0 0;
@@ -1734,19 +1793,20 @@ section {
 @media (max-width: 640px) {
   .admin-submission-header {
     flex-wrap: wrap;
-    padding: 16px 20px;
+    padding: 14px 16px;
+    gap: 12px;
   }
-  .admin-submission-date {
+  .admin-submission-actions {
+    width: 100%;
     margin-left: 46px;
+    justify-content: flex-end;
+  }
+  .admin-submission-details {
+    padding: 0 16px 16px;
   }
   .admin-submission-body {
     grid-template-columns: 1fr;
-    padding: 16px 20px 0;
-  }
-  .admin-submission-tags,
-  .admin-submission-requirements {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-top: 12px;
   }
 }
 
@@ -2267,6 +2327,10 @@ section {
 }
 
 /* Prompting guide */
+.prompting-guide-page section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .prompting-guide-page .pg-page-hero {
   padding: 56px var(--page-gutter) 32px;
   max-width: 840px;
@@ -2305,7 +2369,96 @@ section {
   margin: 0 auto 18px;
 }
 .prompting-guide-page .pg-page-content {
+  padding-top: 0;
   padding-bottom: 80px;
+}
+.pg-cta {
+  margin-top: 64px;
+}
+.pg-cta-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 20px;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 16px;
+  padding: 24px;
+  align-items: center;
+}
+.pg-cta-copy h2 {
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.pg-cta-copy h2 span {
+  color: var(--accent);
+}
+.pg-cta-copy p {
+  margin: 12px 0 0;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.pg-cta-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid #f8cdb8;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+.pg-cta-stats {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pg-cta-stats li {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-light);
+  border: 1px solid #f8cdb8;
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+.pg-cta-btn {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pg-cta-topics {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.pg-cta-topics li {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  padding: 12px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
 }
 .pg-hero-stats {
   margin: 0;
@@ -2770,6 +2923,27 @@ section {
   }
   .pg-progress-track {
     margin-top: 6px;
+  }
+  .pg-cta {
+    margin-top: 40px;
+  }
+  .pg-cta-inner {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    gap: 16px;
+  }
+  .pg-cta-copy h2 {
+    font-size: 24px;
+  }
+  .pg-cta-topics {
+    gap: 8px;
+  }
+  .pg-cta-topics li {
+    padding: 10px 8px;
+    font-size: 10px;
+  }
+  .pg-cta-btn {
+    width: 100%;
   }
   .pg-body {
     margin-top: 14px;

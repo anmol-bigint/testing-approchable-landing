@@ -59,8 +59,6 @@ To add a new recorded course: create a JSON file under `src/data/courses/`, add 
 |-------|--------|-------------|
 | `/api/likes` | `POST` | Toggle course interest (like/unlike). Persists to **Upstash Redis** keyed by IP + course ID. Falls back to `localStorage` on the client if the API is unavailable. |
 
-Legacy serverless handler also exists at `api/likes.js` for Vercel compatibility.
-
 ---
 
 ## Key Features
@@ -127,7 +125,6 @@ approachable-landing/
 │       ├── course-content.ts   # JSON loader for recorded courses
 │       └── analytics.ts        # GA event helpers
 ├── public/                     # Static assets (logo, images, favicons)
-├── api/likes.js                # Legacy Vercel serverless handler
 ├── next.config.ts
 ├── vercel.json
 └── package.json
