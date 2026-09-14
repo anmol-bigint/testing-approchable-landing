@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { notifyNewSubscriber } from '@/lib/notify-email';
 import { addBlogSubscriber, getBlogSubscribers } from '@/lib/subscribers';
 
 export async function GET() {
@@ -23,7 +24,12 @@ export async function POST(req: NextRequest) {
       return Response.json({ error: 'Invalid email format' }, { status: 400 });
     }
 
-    const subscribers = await addBlogSubscriber(email);
+    const { subscribers, isNew } = await addBlogSubscriber(email);
+
+    if (isNew) {
+      await notifyNewSubscriber(subscribers[subscribers.length - 1]);
+    }
+
     return Response.json({ success: true, count: subscribers.length });
   } catch (error) {
     console.error('[subscribe] Error:', error);

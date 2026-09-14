@@ -5,6 +5,15 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Assessment, AssessmentConfig, QuizRec } from '@/lib/assessments';
 import { getScoreBand } from '@/lib/assessments';
 import { COHORT } from '@/lib/cohort-config';
+import {
+  clearAnswersFromUrl,
+  clearQuiz,
+  loadQuiz,
+  readAnswersFromUrl,
+  saveQuiz,
+  validateAnswers,
+  writeAnswersToUrl,
+} from '@/lib/quiz-storage';
 import styles from '@/app/assessment/quiz/[slug]/quiz.module.css';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -26,7 +35,7 @@ function getNextIntro(): string {
 
 function RecCard({ rec, primary }: { rec: QuizRec; primary: boolean }) {
   const cohort = isCohortRec(rec);
-  const href = cohort ? COHORT.formUrl : rec.url;
+  const href = cohort ? (COHORT.state === 'soldout' ? '/' : COHORT.formUrl) : rec.url;
   const external = href.startsWith('http');
   const cta = cohort
     ? COHORT.state === 'soldout'
@@ -72,6 +81,7 @@ function RecCard({ rec, primary }: { rec: QuizRec; primary: boolean }) {
 
 export default function QuizRunner({ assessment, config, relatedCourse }: QuizRunnerProps) {
   const total = assessment.questions.length;
+  const [ready, setReady] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [picked, setPicked] = useState<number | null>(null);
   const [answers, setAnswers] = useState<(number | null)[]>(() => new Array(total).fill(null));
@@ -82,7 +92,50 @@ export default function QuizRunner({ assessment, config, relatedCourse }: QuizRu
 
   const currentQuestion = assessment.questions[questionIndex];
 
+  const animateRing = useCallback((pct: number) => {
+    if (ringAnimated.current) return;
+    ringAnimated.current = true;
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        setRingOffset(RING * (1 - pct / 100));
+      }, 120);
+    });
+  }, []);
+
+  const applyCompleted = useCallback(
+    (completed: number[]) => {
+      const correct = completed.reduce<number>(
+        (sum, answer, n) =>
+          sum + (answer === assessment.questions[n].answer ? 1 : 0),
+        0,
+      );
+      setAnswers(completed);
+      setQuestionIndex(total - 1);
+      setPicked(completed[total - 1] ?? null);
+      setShowResults(true);
+      animateRing(Math.round((correct / total) * 100));
+    },
+    [animateRing, assessment.questions, total],
+  );
+
+  useEffect(() => {
+    const fromUrl = readAnswersFromUrl(assessment);
+    const restored = fromUrl ?? loadQuiz(assessment);
+
+    if (restored) {
+      if (fromUrl) saveQuiz(assessment, fromUrl);
+      else writeAnswersToUrl(restored);
+      applyCompleted(restored);
+    }
+
+    setReady(true);
+    // Restore once per quiz mount; slug changes remount via key on QuizRunner.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [assessment.slug]);
+
   const resetQuiz = useCallback(() => {
+    clearQuiz(assessment.slug);
+    clearAnswersFromUrl();
     setQuestionIndex(0);
     setPicked(null);
     setAnswers(new Array(total).fill(null));
@@ -91,28 +144,25 @@ export default function QuizRunner({ assessment, config, relatedCourse }: QuizRu
     setRingOffset(RING);
     ringAnimated.current = false;
     window.scrollTo(0, 0);
-  }, [total]);
+  }, [assessment.slug, total]);
 
   const finishQuiz = useCallback(
     (finalAnswers: (number | null)[]) => {
+      const completed = validateAnswers(finalAnswers, assessment);
+      if (completed) {
+        saveQuiz(assessment, completed);
+        writeAnswersToUrl(completed);
+      }
+
       const correct = finalAnswers.reduce<number>(
         (sum, answer, n) =>
           sum + (answer === assessment.questions[n].answer ? 1 : 0),
         0,
       );
-      const pct = Math.round((correct / total) * 100);
       setShowResults(true);
-
-      if (!ringAnimated.current) {
-        ringAnimated.current = true;
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            setRingOffset(RING * (1 - pct / 100));
-          }, 120);
-        });
-      }
+      animateRing(Math.round((correct / total) * 100));
     },
-    [assessment.questions, total],
+    [animateRing, assessment, total],
   );
 
   const handleNextClick = useCallback(() => {
@@ -196,7 +246,7 @@ export default function QuizRunner({ assessment, config, relatedCourse }: QuizRu
         </div>
       </div>
 
-      {currentQuestion && (
+      {ready && currentQuestion && (
         <section className={styles.stage}>
           <div className={styles.narrow}>
             <p className={styles.qIndex}>

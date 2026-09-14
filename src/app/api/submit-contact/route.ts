@@ -5,7 +5,7 @@ import { isHoneypotTriggered } from '@/lib/corporate-inquiry';
 import { FORM_TYPE, validateContactInquiry, type ContactInquiryRecord } from '@/lib/contact-inquiry';
 import { blobOptions } from '@/lib/blob-client';
 import { submissionBlobPath } from '@/lib/blob-paths';
-import { toWebhookPayload } from '@/lib/webhook-payload';
+import { notifyContactInquiry } from '@/lib/notify-email';
 
 export async function POST(req: NextRequest) {
   try {
@@ -42,25 +42,7 @@ export async function POST(req: NextRequest) {
       ...blobOptions(),
     });
 
-    const webhookUrl = process.env.N8N_WEBHOOK_URL;
-    if (webhookUrl) {
-      try {
-        const n8nResponse = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(toWebhookPayload(record)),
-          signal: AbortSignal.timeout(5000),
-        });
-
-        if (!n8nResponse.ok) {
-          console.error(
-            `n8n webhook responded with ${n8nResponse.status} ${n8nResponse.statusText}`,
-          );
-        }
-      } catch (n8nError) {
-        console.error('n8n webhook notification failed:', n8nError);
-      }
-    }
+    await notifyContactInquiry(record);
 
     return NextResponse.json({ success: true, message: 'Submission received' });
   } catch (error) {

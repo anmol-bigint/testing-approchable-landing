@@ -26,7 +26,7 @@ export default function Banner() {
   } else {
     content = (
       <>
-        🔥 Cohort 7 starts {COHORT.dateShort} &nbsp;•&nbsp; Only {COHORT.seatsLeft} seats left{' '}
+        🔥 Cohort 8 starts {COHORT.dateShort} &nbsp;•&nbsp; Only {COHORT.seatsLeft} seats left{' '}
         <a href="#pricing" onClick={() => trackCTA('Banner', 'Top')}>
           Reserve Seat →
         </a>

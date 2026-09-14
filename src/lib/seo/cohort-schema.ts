@@ -6,9 +6,9 @@ export interface FaqItem {
   a: string;
 }
 
-const COURSE_TITLE = 'Claude AI Cohort — Master the Claude Ecosystem in 6 Weeks';
+const COURSE_TITLE = 'Claude AI Cohort — Master AI Foundations & the Claude Ecosystem in 3 Weeks';
 const COURSE_DESCRIPTION =
-  'A small-group, mentor-led cohort on the full Claude ecosystem — Claude Chat, Claude Code, Claude Cowork, and the API. 20 seats. Live sessions. Real projects.';
+  'A small-group, mentor-led cohort on AI Foundations, Claude Chat, Agentic AI with Claude Cowork, and Vibe Coding. 20 seats. Live sessions. Real projects.';
 
 export function buildCohortSchema(faq: FaqItem[]) {
   const startDate = new Date(COHORT.date).toISOString().split('T')[0];
@@ -38,14 +38,14 @@ export function buildCohortSchema(faq: FaqItem[]) {
         offers: [
           {
             '@type': 'Offer',
-            price: '4999',
+            price: '7999',
             priceCurrency: 'INR',
             url: COHORT.formUrl,
             availability: 'https://schema.org/InStock',
           },
           {
             '@type': 'Offer',
-            price: '129',
+            price: '200',
             priceCurrency: 'USD',
             url: COHORT.formUrl,
             availability: 'https://schema.org/InStock',

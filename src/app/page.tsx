@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { Sora, Manrope } from 'next/font/google';
 import { COHORT } from '@/lib/cohort-config';
 import { buildCohortSchema } from '@/lib/seo/cohort-schema';
 import Banner from '@/components/Banner';
@@ -9,18 +10,23 @@ import FloatingCta from '@/components/FloatingCta';
 import MentorSection from '@/components/MentorSection';
 import PricingSection from '@/components/PricingSection';
 
+// Type treatment for this landing page only — see the "Confident Technical" sample.
+// Scoped via the .cohort-page class + globals.css; no other page is affected.
+const sora = Sora({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--font-sora' });
+const manrope = Manrope({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-manrope' });
+
 const COHORT_DESCRIPTION =
-  'A small-group, mentor-led cohort on the full Claude ecosystem — Claude Chat, Claude Code, Claude Cowork, and the API. 20 seats. Live sessions. Real projects.';
+  'A small-group, mentor-led cohort on AI Foundations, Claude Chat, Agentic AI with Claude Cowork, and Vibe Coding. 20 seats. Live sessions. Real projects.';
 const COHORT_OG_IMAGE = '/img/og-image.png';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Claude AI Cohort — Master the Claude Ecosystem in 6 Weeks' },
+  title: { absolute: 'Claude AI Cohort — Master AI Foundations & the Claude Ecosystem in 6 Weeks' },
   description: COHORT_DESCRIPTION,
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    title: 'Claude AI Cohort — Master the Claude Ecosystem in 6 Weeks',
-    description: 'Small-group, mentor-led cohort on Claude Chat, Claude Code, Cowork, and the API. 20 seats max.',
+    title: 'Claude AI Cohort — Master AI Foundations & the Claude Ecosystem in 6 Weeks',
+    description: 'Small-group, mentor-led cohort on Claude Chat, Agentic AI with Cowork, and Vibe Coding. 20 seats max.',
     url: '/',
     siteName: 'Approachable',
     images: [
@@ -28,14 +34,14 @@ export const metadata: Metadata = {
         url: COHORT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'Approachable Claude AI Cohort — master the Claude ecosystem in 6 weeks',
+        alt: 'Approachable Claude AI Cohort — master AI foundations and the Claude ecosystem in 3 weeks',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude AI Cohort — Master the Claude Ecosystem in 6 Weeks',
-    description: 'Small-group, mentor-led cohort on Claude Chat, Claude Code, Cowork, and the API. 20 seats max.',
+    title: 'Claude AI Cohort — Master AI Foundations & the Claude Ecosystem in 6 Weeks',
+    description: 'Small-group, mentor-led cohort on Claude Chat, Agentic AI with Cowork, and Vibe Coding. 20 seats max.',
     images: [COHORT_OG_IMAGE],
   },
 };
@@ -45,48 +51,28 @@ const COMPANIES = ['Adobe', 'Microsoft', 'GAP Inc', 'Deloitte', 'Nordstrom', 'Up
 const CURRICULUM = [
   {
     num: '1',
-    label: 'Session 1',
-    title: 'AI Foundations + The Claude Context',
+    label: 'Week 1 · Sep 30',
+    title: 'AI Foundations & Claude Chat',
     outcomes: [
       'A clear mental model of how LLMs work — enough to explain it to your team or boss',
-      'Speak AI fluently: tokens, hallucinations, MCP, Human Capital vs Token Capital',
-      'Clarity on which Claude product to use for which job — Chat, Code, Cowork, Design or API',
+      'Speak AI fluently: tokens, hallucinations, MCP',
+      'Your own reusable prompt library, ready to use at work',
+      'Automate research, reporting, competitive intelligence, and operational workflows that normally consume hours',
+      'Produce high-quality reports, presentations, and analyses in a fraction of the time',
     ],
     tags: [
       { text: 'How LLMs work', highlight: true },
-      { text: 'Loop Engineering', highlight: true },
-      { text: 'Key terms: tokens, hallucinations, MCP', highlight: false },
-      { text: 'Human Capital vs Token Capital', highlight: false },
-      { text: 'Where the industry is heading', highlight: false },
-      { text: 'Claude ecosystem overview', highlight: false },
-      { text: 'How to access Claude: Chat, Code, Cowork, Design, API', highlight: false },
+      { text: 'Prompt library & context management', highlight: true },
+      { text: 'Key terms: context, tokens, hallucinations, MCP', highlight: false },
+      { text: 'Web search → Deep research workflow', highlight: false },
+      { text: 'Projects & Artifacts', highlight: false },
+      { text: 'Skills, Connectors & Plugins', highlight: false },
     ],
   },
   {
     num: '2',
-    label: 'Session 2',
-    title: 'Claude Chat & API — Deep Dive',
-    outcomes: [
-      'Your own reusable prompt library, ready to use at work',
-      'Automate research, reporting, competitive intelligence, and operational workflows that normally consume hours.',
-      'Learn the fundamentals of using AI APIs to integrate intelligence into your workflows.',
-      'Produce high-quality reports, presentations, and analyses in a fraction of the time.',
-      'How to optimize tokens in Claude Chat',
-    ],
-    tags: [
-      { text: 'Prompt library & context management', highlight: true },
-      { text: 'Web search → Deep research workflow', highlight: true },
-      { text: 'Internal knowledge vs external search', highlight: false },
-      { text: 'Projects & Artifacts', highlight: false },
-      { text: 'Connectors & customisation', highlight: false },
-      { text: 'Calling the Claude API (intro)', highlight: false },
-      { text: '🛠 Live project: build with Claude API', highlight: false },
-    ],
-  },
-  {
-    num: '3',
-    label: 'Session 3',
-    title: 'Claude Cowork - Agentic Task Automation',
+    label: 'Week 2 · Oct 7',
+    title: 'Agentic AI with Claude Cowork',
     outcomes: [
       'Build your first AI agent that independently completes real knowledge-work tasks.',
       'Automate repetitive workflows that consume hours every week.',
@@ -103,36 +89,35 @@ const CURRICULUM = [
     ],
   },
   {
-    num: '4',
-    label: 'Session 4',
-    title: 'Claude Code — Agentic Development',
+    num: '3',
+    label: 'Week 3 · Oct 14',
+    title: 'Vibe Coding — Build with AI',
     outcomes: [
-      'Build software faster by collaborating effectively with Claude Code.',
-      'Ship real features or prototypes with significantly less manual effort.',
+      'Build software faster by collaborating effectively with AI coding tools.',
+      'Ship real prototypes or mini-apps with significantly less manual effort.',
       'Apply proven practices to maximize quality while minimizing AI cost.',
-      'Learn workflows for navigating, understanding, and modifying unfamiliar codebases.',
+      'Get an introduction to Claude Code for developers who want to go further.',
     ],
     tags: [
-      { text: 'CLAUDE.md — memory and context files', highlight: true },
-      { text: 'Skills, MCP, Hooks, Plugins, Routines', highlight: true },
-      { text: 'Loop Engineering in code', highlight: true },
-      { text: 'Claude Code in large projects — best practices', highlight: false },
-      { text: '🛠 Live project: ship something with Claude Code', highlight: false },
+      { text: 'Vibe coding with Claude', highlight: true },
+      { text: 'Building with Lovable', highlight: true },
+      { text: 'Intro to Claude Code', highlight: true },
+      { text: '🛠 Live project: ship something with AI', highlight: false },
     ],
   },
 ];
 
 const CAPSTONE = {
   outcomes: [
-    'Complete two portfolio-worthy AI projects relevant to your role.',
-    'Present a live demo showcasing practical AI implementation.',
-    'Receive personalized feedback to refine your workflows and solve real challenges.',
+    'Complete a portfolio-worthy AI project relevant to your role.',
+    'Submit it for 1:1 mentor review and personalized feedback.',
+    'Refine your workflows and get your specific questions answered.',
     'Finish the cohort with repeatable AI workflows you can apply immediately at work.',
   ],
   tags: [
-    { text: '2 capstone projects you choose', highlight: true },
-    { text: 'Focused doubt-clearing sessions', highlight: false },
-    { text: 'Demo to the group', highlight: false },
+    { text: 'Capstone project you choose', highlight: true },
+    { text: 'Submitted for mentor review', highlight: true },
+    { text: 'Focused doubt-clearing feedback', highlight: false },
     { text: 'Portfolio-ready output', highlight: false },
   ],
 };
@@ -145,8 +130,8 @@ type HomeFaqItem = {
 
 const FAQ: HomeFaqItem[] = [
   { q: 'Who is this cohort for?', a: 'Anyone who uses or wants to use AI & Claude seriously — developers, PMs, founders, consultants, and tech professionals who want to go beyond chat prompts and actually build with the Claude ecosystem.' },
-  { q: 'Do I need to know how to code?', a: "Helpful but not required. Claude Code sessions assume basic familiarity with files and terminals. Everything else is accessible to non-developers. We'll calibrate to the group." },
-  { q: 'How long is the program?', a: '4 live sessions (90 mins each), followed by a 2-week capstone build period and a final demo session. Roughly 6–7 weeks start to finish.' },
+  { q: 'Do I need to know how to code?', a: "Not at all. This cohort is fully accessible to non-developers — AI Foundations, Claude Chat, and Cowork need no coding, and the Vibe Coding week uses AI to write the code for you. No prior experience required." },
+  { q: 'How long is the program?', a: '3 live sessions (90 mins each), one per week — Session 1: Sep 30, Session 2: Oct 7, Session 3: Oct 14 — followed by a 3 week capstone build period submitted for mentor review. Roughly 6 weeks start to finish.' },
   { q: 'Why is the fee non-refundable?', a: "We cap at 20 seats. When someone takes a seat and doesn't show, it costs another learner their spot. The commitment fee protects the group experience — it's the same reason the cohort model works." },
   {
     q: "What's the Approachable learning platform?",
@@ -173,11 +158,11 @@ export default function HomePage() {
       />
       <Banner />
       <Header hideNav />
-      <main>
+      <main className={`cohort-page ${sora.variable} ${manrope.variable}`}>
         {/* HERO */}
         <section className="page-section" style={{ paddingTop: 64, paddingBottom: 0, borderBottom: '1px solid var(--border)' }}>
           <div className="hero" style={{ padding: '0 0 48px' }}>
-            <div className="hero-label">Cohort 7 · {COHORT.dateShort} · 20 seats max</div>
+            <div className="hero-label">Cohort 8 · {COHORT.dateShort} · 20 seats max</div>
             <h1>
               Master the AI fundamentals <br />
               with <span>Claude Ecosystem</span>
@@ -188,7 +173,7 @@ export default function HomePage() {
               Mentor: Ranbeer Makin (Claude Certified &amp; Claude Partner)
             </p>
             <p>
-              A small, mentor-led study group covering AI fundamentals, and Claude Chat, Claude Design, Claude Code, Claude Cowork, and the Claude API — from first principles to live projects.
+              A small, mentor-led study group covering AI fundamentals, Claude Chat, Agentic AI with Claude Cowork, and Vibe Coding — from first principles to live projects.
             </p>
             <div className="hero-actions">
               <a href="#pricing" className="btn-primary">Become AI Capable →</a>
@@ -201,7 +186,7 @@ export default function HomePage() {
               <div className="cohort-meta">
                 <div className="cohort-meta-item">📅 <strong>Starts {COHORT.date}</strong> &nbsp;·&nbsp; {COHORT.time}</div>
                 <div className="cohort-meta-item">👥 <strong>Max 20 seats</strong> &nbsp;·&nbsp; Small group, discussion-driven</div>
-                <div className="cohort-meta-item">⏱ <strong>4 live sessions (each week)</strong> &nbsp;·&nbsp; 60-90 min each + capstone build</div>
+                <div className="cohort-meta-item">⏱ <strong>3 live sessions</strong> &nbsp;·&nbsp; Sep 30, Oct 7, Oct 14 &nbsp;·&nbsp; 60-90 min each + 3 weeks capstone build</div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end' }}>
                 <span className="cohort-badge">{COHORT.seatsLeft} seats left</span>
@@ -223,14 +208,13 @@ export default function HomePage() {
 
         <hr className="divider" />
 
-        {/* VIDEO */}
         <section style={{ background: 'var(--bg-warm)', padding: '56px 0' }}>
           <div className="container-max" style={{ maxWidth: 780 }}>
             <div className="section-label" style={{ textAlign: 'center' }}>Cohort overview</div>
             <h2 className="section-title" style={{ textAlign: 'center', marginBottom: 32 }}>See what you&apos;re signing up for</h2>
             <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, borderRadius: 14, overflow: 'hidden', border: '1px solid var(--border)', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
               <iframe
-                src="https://player.vimeo.com/video/1208021044?badge=0&autopause=0&player_id=0&app_id=58479"
+                src="https://player.vimeo.com/video/1225208449?badge=0&autopause=0&player_id=0&app_id=58479"
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
@@ -247,7 +231,7 @@ export default function HomePage() {
           <div className="container-max">
             <div className="section-label">What you&apos;ll learn</div>
             <h2 className="section-title">The full AI fundamentals and Claude curriculum</h2>
-            <p className="section-sub">Four live sessions, each 60-90 minutes with hands-on activities. Then two weeks to build your capstone project.</p>
+            <p className="section-sub">Three live sessions, each 60-90 minutes with hands-on activities. Then time to build a capstone project for mentor review.</p>
 
             <div className="curriculum-wrap" style={{ marginTop: 40 }}>
               {CURRICULUM.map((session) => (
@@ -285,8 +269,8 @@ export default function HomePage() {
                 <div className="curriculum-header" style={{ background: 'var(--accent-light)' }}>
                   <div className="curriculum-num" style={{ background: 'var(--text-primary)' }}>✦</div>
                   <div>
-                    <div className="curriculum-session-label">Weeks 5–6</div>
-                    <div className="curriculum-title">Capstone Projects + Cohort Completion</div>
+                    <div className="curriculum-session-label">After Week 3</div>
+                    <div className="curriculum-title">Capstone Project + Mentor Review</div>
                   </div>
                 </div>
                 <div className="curriculum-body">
@@ -317,7 +301,7 @@ export default function HomePage() {
         {/* OUTCOMES */}
         <section id="outcomes" style={{ background: 'var(--bg-warm)' }}>
           <div className="container-max">
-            <div className="section-label">After 6 weeks</div>
+            <div className="section-label">After 3 weeks</div>
             <h2 className="section-title">What you&apos;ll be able to do</h2>
             <div className="outcomes-grid">
               <div className="outcome-card">
@@ -335,7 +319,7 @@ export default function HomePage() {
               <div className="outcome-card">
                 <div className="outcome-icon" style={{ background: '#7C3AED' }}>💡</div>
                 <h3>Ship AI Prototypes Fast</h3>
-                <p>Use Claude Code to turn ideas into working demos in days, not months. Perfect for validating startup ideas or pitching to investors.</p>
+                <p>Use vibe coding with Claude and Lovable to turn ideas into working demos in days, not months — with a light intro to Claude Code. Perfect for validating startup ideas or pitching to investors.</p>
                 <div className="outcome-project">✓ Capstone: Demo-ready AI prototype</div>
               </div>
             </div>
@@ -354,7 +338,7 @@ export default function HomePage() {
                 { icon: '📋', title: 'Join the cohort', desc: 'Fill out the short form. We confirm your seat and send payment details within 12 hours.' },
                 { icon: '📖', title: 'Pre-session materials', desc: 'Short videos and reading delivered before each session. Come ready to build, not to passively watch.' },
                 { icon: '🎙', title: '90-minute live sessions', desc: 'Mentor-led, hands-on, discussion-driven. Small group means every question gets answered.' },
-                { icon: '🏗', title: 'Build your capstone', desc: 'Two weeks of independent building with mentor access for doubt-clearing, then a live demo.' },
+                { icon: '🏗', title: 'Build your capstone', desc: 'Independent building with mentor access for doubt-clearing, then submit for 1:1 review.' },
               ].map((card) => (
                 <div key={card.title} className="how-card">
                   <div className="how-icon">{card.icon}</div>

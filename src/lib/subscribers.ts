@@ -31,22 +31,26 @@ export async function getBlogSubscribers(): Promise<BlogSubscriber[]> {
   );
 }
 
-export async function addBlogSubscriber(email: string): Promise<BlogSubscriber[]> {
+export async function addBlogSubscriber(
+  email: string,
+): Promise<{ subscribers: BlogSubscriber[]; isNew: boolean }> {
   const normalized = email.toLowerCase();
   const subscribers = await readSubscribersBlob();
   const exists = subscribers.some((s) => s.email.toLowerCase() === normalized);
 
-  if (!exists) {
-    subscribers.push({ email: normalized, subscribedAt: new Date().toISOString() });
-    await put(SUBSCRIBERS_BLOB_PATH, JSON.stringify(subscribers), {
-      access: 'private',
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      ...blobOptions(),
-    });
+  if (exists) {
+    return { subscribers, isNew: false };
   }
 
-  return subscribers;
+  subscribers.push({ email: normalized, subscribedAt: new Date().toISOString() });
+  await put(SUBSCRIBERS_BLOB_PATH, JSON.stringify(subscribers), {
+    access: 'private',
+    addRandomSuffix: false,
+    allowOverwrite: true,
+    ...blobOptions(),
+  });
+
+  return { subscribers, isNew: true };
 }
 
 export async function deleteBlogSubscriber(email: string): Promise<void> {

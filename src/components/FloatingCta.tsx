@@ -27,7 +27,7 @@ export default function FloatingCta() {
     <div id="floatingCta" className={visible ? 'visible' : ''}>
       <div className="floating-inner">
         <div className="floating-text">
-          🔥 Only {COHORT.seatsLeft} seats left · Cohort 7 starts {COHORT.dateShort}
+          🔥 Only {COHORT.seatsLeft} seats left · Cohort 8 starts {COHORT.dateShort}
         </div>
         <div className="floating-actions">
           <Link

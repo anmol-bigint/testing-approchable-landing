@@ -118,7 +118,7 @@ export default function AssessmentPage() {
             <div className={styles.sectionHead}>
               <div className={styles.sectionLabel}>What you walk away with</div>
               <h2>A score, a review, and a next program.</h2>
-              <p>No timer. Nothing is saved on this page.</p>
+              <p>No timer. Saved on this device and in the page link — no account.</p>
             </div>
 
             <div className={styles.steps}>

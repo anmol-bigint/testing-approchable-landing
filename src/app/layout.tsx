@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 const defaultTitle = 'Approachable — Making AI Approachable for Everyone';
 const defaultDescription =
-  'A small-group, mentor-led cohort on the full Claude ecosystem — Claude Chat, Claude Code, Claude Cowork, and the API. 20 seats. Live sessions. Real projects.';
+  'A small-group, mentor-led cohort on AI Foundations, Claude Chat, Agentic AI with Claude Cowork, and Vibe Coding. 20 seats. Live sessions. Real projects.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -816,11 +816,11 @@ section {
   background: var(--bg);
   border: 2px solid var(--accent);
   border-radius: 16px;
-  padding: 36px;
+  padding: 28px;
   max-width: 560px;
-  margin: 40px auto 0;
+  margin: 32px auto 0;
 }
-.pricing-head { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.pricing-head { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
 .price-main { font-size: 42px; font-weight: 800; color: var(--text-primary); line-height: 1; }
 .price-original { font-size: 18px; font-weight: 600; color: var(--text-muted); text-decoration: line-through; margin-right: 8px; }
 .price-sub { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
@@ -841,8 +841,8 @@ section {
   background: var(--bg-warm);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 10px 14px;
-  margin-bottom: 20px;
+  padding: 8px 14px;
+  margin-bottom: 14px;
 }
 .price-countdown strong { color: var(--accent); font-variant-numeric: tabular-nums; }
 .price-tagline--expired { text-decoration: line-through; opacity: 0.6; }
@@ -858,13 +858,79 @@ section {
 }
 .pricing-includes li:last-child { border-bottom: none; }
 .pricing-includes .check { color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+.pricing-divider { border-top: 1px solid var(--border); margin: 16px 0; }
+
+.pricing-benefits { margin-bottom: 14px; }
+.pricing-benefit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pricing-benefit:last-child { border-bottom: none; padding-bottom: 2px; }
+.pricing-benefit-check { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.pricing-benefit-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+
+.pricing-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--accent-light);
+  border: 1px solid #F8CDB8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.pricing-callout-icon { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+.pricing-callout-title { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+.pricing-callout-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.4; }
+
+.pricing-bonus {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #F0FBF6;
+  border: 1px dashed #A9DFC4;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+.pricing-bonus-icon { flex-shrink: 0; margin-top: 1px; line-height: 1; font-size: 20px; }
+.pricing-bonus-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1E8A5F;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: #DDF5E8;
+  border-radius: 5px;
+  padding: 2px 7px;
+  margin-bottom: 5px;
+}
+.pricing-bonus-title { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+.pricing-bonus-title .pricing-bonus-strike { color: var(--text-muted); text-decoration: line-through; font-weight: 600; margin-right: 6px; }
+.pricing-bonus-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.4; }
+
+.pricing-also-included-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.pricing-also-included { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+
 .pricing-cta {
   display: block;
   width: 100%;
   background: var(--accent);
   color: white;
   text-align: center;
-  padding: 15px;
+  padding: 13px;
   border-radius: 10px;
   font-weight: 700;
   font-size: 16px;
@@ -2958,4 +3024,35 @@ section {
   .pg-nav {
     box-shadow: none;
   }
+}
+
+/* ============================================================
+   Cohort landing page ("/") — Sora + Manrope type treatment.
+   Scoped to main.cohort-page so no other page is affected.
+   Font objects are loaded via next/font/google in src/app/page.tsx,
+   which exposes them as the --font-sora / --font-manrope variables.
+   ============================================================ */
+main.cohort-page {
+  font-family: var(--font-manrope), Inter, system-ui, sans-serif;
+}
+main.cohort-page h1,
+main.cohort-page h2,
+main.cohort-page h3,
+main.cohort-page .hero-label,
+main.cohort-page .section-label,
+main.cohort-page .curriculum-num,
+main.cohort-page .curriculum-session-label,
+main.cohort-page .btn-primary,
+main.cohort-page .btn-secondary,
+main.cohort-page .pricing-cta,
+main.cohort-page .price-main,
+main.cohort-page .cohort-badge,
+main.cohort-page .step-num {
+  font-family: var(--font-sora), system-ui, sans-serif;
+}
+main.cohort-page h1 { letter-spacing: -0.03em; }
+main.cohort-page h2 { letter-spacing: -0.02em; }
+main.cohort-page .hero-label,
+main.cohort-page .section-label {
+  font-weight: 700;
 }

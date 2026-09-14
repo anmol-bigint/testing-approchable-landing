@@ -60,7 +60,12 @@ export default async function QuizPage({ params }: QuizPageProps) {
   return (
     <>
       <Header navVariant="course" />
-      <QuizRunner assessment={assessment} config={config} relatedCourse={relatedCourse} />
+      <QuizRunner
+        key={assessment.slug}
+        assessment={assessment}
+        config={config}
+        relatedCourse={relatedCourse}
+      />
     </>
   );
 }

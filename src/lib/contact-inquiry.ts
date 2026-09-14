@@ -66,6 +66,8 @@ export function validateContactInquiry(body: unknown): ValidationSuccess | Valid
   if (!name) errors.name = 'Full name is required';
   if (!email) errors.email = 'Email is required';
   else if (!EMAIL_RE.test(email)) errors.email = 'Enter a valid email address';
+  if (!phone) errors.phone = 'Phone number is required';
+  if (!organization) errors.organization = 'Organization is required';
   if (!enquiryType) errors.enquiryType = 'Select what we can help you with';
   else if (!VALID_ENQUIRY_TYPES.has(enquiryType)) errors.enquiryType = 'Select a valid enquiry type';
   if (!message) errors.message = 'Please enter your message';

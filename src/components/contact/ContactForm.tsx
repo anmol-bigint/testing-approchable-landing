@@ -205,26 +205,34 @@ export default function ContactForm({ defaultEnquiryType = '' }: ContactFormProp
 
         <div className={styles.formRow}>
           <div className={styles.formField}>
-            <label htmlFor="phone">Phone (optional)</label>
+            <label htmlFor="phone">Phone</label>
             <input
               id="phone"
               type="tel"
+              required
               placeholder="+1 555 000 0000"
               value={form.phone}
               disabled={loading}
+              aria-invalid={errors.phone ? true : undefined}
+              aria-describedby={errors.phone ? 'phone-error' : undefined}
               onChange={(e) => updateField('phone', e.target.value)}
             />
+            <FieldError id="phone-error" error={errors.phone} />
           </div>
           <div className={styles.formField}>
-            <label htmlFor="organization">Organization (optional)</label>
+            <label htmlFor="organization">Organization</label>
             <input
               id="organization"
               type="text"
+              required
               placeholder="Company or team name"
               value={form.organization}
               disabled={loading}
+              aria-invalid={errors.organization ? true : undefined}
+              aria-describedby={errors.organization ? 'organization-error' : undefined}
               onChange={(e) => updateField('organization', e.target.value)}
             />
+            <FieldError id="organization-error" error={errors.organization} />
           </div>
         </div>
 
