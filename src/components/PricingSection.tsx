@@ -63,7 +63,7 @@ export default function PricingSection() {
               className={`price-tagline${isLate ? ' price-tagline--expired' : ''}`}
               style={{ display: 'inline-block' }}
             >
-              🚀 EARLY BIRD price — save 20%
+              🚀 EARLY BIRD price — save 50%
             </span>
           </div>
 
