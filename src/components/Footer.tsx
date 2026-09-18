@@ -38,12 +38,15 @@ export default function Footer() {
       links: [
         { label: 'About Us', href: '/about' },
         { label: 'Contact Us', href: '/contact' },
+        { label: 'Sanskaar Box', href: 'https://sanskaarbox.com' },
+        { label: 'Let Us Home School', href: 'https://letushomeschool.com' },
       ],
     },
     {
       heading: 'Programs',
       links: [
         { label: 'Live AI Cohort', href: '/' },
+        { label: 'Team AI Training', href: '/team-ai-training' },
         { label: 'All Courses', href: '/courses' },
         { label: 'AI Mastery for Working Professionals', href: '/courses/ai-mastery-for-working-professionals' },
         {
@@ -52,7 +55,6 @@ export default function Footer() {
         },
         { label: 'Vibe Coding Mastery for Working Professionals', href: '/courses/vibe-coding-mastery-for-working-professionals' },
         { label: 'Free Courses', href: '/courses' },
-        { label: 'Team AI Training', href: '/team-ai-training' },
       ],
     },
     {
@@ -64,13 +66,6 @@ export default function Footer() {
         { label: 'Prompting Guide', href: '/prompting-guide' },
         { label: 'AI Assessments', href: '/assessment' },
         { label: 'Claude Code Setup Guide', href: 'https://github.com/ranmax123/claude-code-guide' },
-      ],
-    },
-    {
-      heading: 'Legal',
-      links: [
-        { label: 'Privacy Policy', static: true },
-        { label: 'Terms of Service', static: true },
       ],
     },
   ];

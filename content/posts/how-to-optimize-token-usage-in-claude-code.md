@@ -28,6 +28,8 @@ Everything in that bar breaks down into three types.
 
 **Output tokens** are everything the model sends back: not just the final summary, but every tool call, every edit, every bit of thinking along the way. These cost more, because the model writes one token at a time. To produce something as simple as `const x = 1`, it runs a full pass over the entire context just to generate `const`, another full pass for `x`, another for `=`. More compute per token means output is priced the highest of the three.
 
+![Diagram showing four separate model passes to generate the tokens const, x, =, and 1 — each pass re-reading the entire context plus every token written so far](/images/posts/how-to-optimize-token-usage-in-claude-code-output-passes.webp)
+
 **Cached tokens** are the cheapest. A big chunk of any request is identical to the one before it, and you're only appending to the end. The server doesn't reprocess that unchanged part; it just reuses the internal state it already built. That unchanged front portion is called the prefix, and it gets billed at a small fraction of normal input price.
 
 In a healthy session, most of your input should be the cheap, cached kind. You can check this yourself: type `/usage` and look at the prompt cache line. If that number is low, something is breaking your cache.
@@ -35,6 +37,9 @@ In a healthy session, most of your input should be the cheap, cached kind. You c
 ## Pick the right model for the task
 
 The model running your session multiplies everything else, since it applies to every single token, in and out. A bigger model like Opus or Fable does more computation per token, so it costs more, and that's worth it for some tasks, but not all of them.
+
+![Pricing table comparing per-token input, cached input, and output costs across Haiku, Sonnet, Opus, and Fable models](/images/posts/how-to-optimize-token-usage-in-claude-code-model-pricing.webp)
+
 
 Think of it this way: Sonnet is a strong generalist. Opus is the expert. Fable is the specialist who's seen problems no one else has. Haiku is your quick assistant, great for a precisely described edit, a mechanical change, or a question about code that's already in context.
 
@@ -45,6 +50,9 @@ When a result misses the mark, ask yourself: did it not know enough, or did it n
 Fewer tool calls and fewer round trips mean Claude spends less time figuring out what you actually want.
 
 Some of that comes down to your prompt. A small trick: reference the file directly, like "fix the failing tests in @utils.test.ts." Claude Code loads the file's contents into the prompt before the request even goes out, so that first read tool call never has to happen.
+
+![Comparison showing a plain file-name prompt triggering an extra read tool call versus an @-mentioned file loading its contents directly into the prompt](/images/posts/how-to-optimize-token-usage-in-claude-code-file-mention.webp)
+
 
 The rest comes down to what's already sitting in your context. Type `/context` in a fresh session and you'll see exactly what's loaded: system prompt, tools, CLAUDE.md, skills, MCPs, with token counts for each. Worth checking before you start anything new.
 

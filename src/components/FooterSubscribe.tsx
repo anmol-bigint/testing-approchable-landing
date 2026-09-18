@@ -57,6 +57,10 @@ export default function FooterSubscribe() {
           {status === 'error' && <p className="footer-subscribe-error">{errorMsg}</p>}
         </form>
       )}
+      <div className="footer-subscribe-legal">
+        <span className="footer-static-link">Privacy Policy</span>
+        <span className="footer-static-link">Terms of Service</span>
+      </div>
     </div>
   );
 }
