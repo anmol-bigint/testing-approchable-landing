@@ -10,6 +10,11 @@ const COURSE_TITLE = 'Claude AI Cohort — Master AI Foundations & the Claude Ec
 const COURSE_DESCRIPTION =
   'A small-group, mentor-led cohort on AI Foundations, Claude Chat, Agentic AI with Claude Cowork, and Vibe Coding. 20 seats. Live sessions. Real projects.';
 
+function parsePrice(value: string): string {
+  const cleaned = value.replace(/[^0-9.]/g, '');
+  return cleaned || '0';
+}
+
 export function buildCohortSchema(faq: FaqItem[]) {
   const startDate = new Date(COHORT.date).toISOString().split('T')[0];
 
@@ -38,14 +43,14 @@ export function buildCohortSchema(faq: FaqItem[]) {
         offers: [
           {
             '@type': 'Offer',
-            price: '7999',
+            price: parsePrice(COHORT.priceIndia),
             priceCurrency: 'INR',
             url: COHORT.formUrl,
             availability: 'https://schema.org/InStock',
           },
           {
             '@type': 'Offer',
-            price: '200',
+            price: parsePrice(COHORT.priceIntl),
             priceCurrency: 'USD',
             url: COHORT.formUrl,
             availability: 'https://schema.org/InStock',

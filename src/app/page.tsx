@@ -105,6 +105,23 @@ const CURRICULUM = [
       { text: '🛠 Live project: ship something with AI', highlight: false },
     ],
   },
+  {
+    num: '4',
+    label: 'Week 4 · Date TBD',
+    title: 'BONUS Session: Build AI Apps & AI Agents with n8n',
+    outcomes: [
+      'Add intelligent automation to your workflows using n8n.',
+      'Infuse intelligence in your applications using AI.',
+      'Build AI Agents and Agentic applications with n8n',
+    ],
+    tags: [
+      { text: 'AI Apps', highlight: true },
+      { text: 'AI Agents', highlight: true },
+      { text: 'n8n', highlight: true },
+      { text: '🛠 Live project: ship AI Agents', highlight: false },
+    ],
+  },
+
 ];
 
 const CAPSTONE = {
@@ -129,7 +146,7 @@ type HomeFaqItem = {
 };
 
 const FAQ: HomeFaqItem[] = [
-  { q: 'Who is this cohort for?', a: 'Anyone who uses or wants to use AI & Claude seriously — developers, PMs, founders, consultants, and tech professionals who want to go beyond chat prompts and actually build with the Claude ecosystem.' },
+  { q: 'Who is this cohort for?', a: 'Anyone who uses or wants to use AI & Claude seriously — developers, PMs, founders, consultants, and tech professionals who want to go beyond chat prompts and actually build with the Claude ecosystem. This is beginner to intermediate level cohort.' },
   { q: 'Do I need to know how to code?', a: "Not at all. This cohort is fully accessible to non-developers — AI Foundations, Claude Chat, and Cowork need no coding, and the Vibe Coding week uses AI to write the code for you. No prior experience required." },
   { q: 'How long is the program?', a: '3 live sessions (90 mins each), one per week — Session 1: Sep 30, Session 2: Oct 7, Session 3: Oct 14 — followed by a 3 week capstone build period submitted for mentor review. Roughly 6 weeks start to finish.' },
   { q: 'Why is the fee non-refundable?', a: "We cap at 20 seats. When someone takes a seat and doesn't show, it costs another learner their spot. The commitment fee protects the group experience — it's the same reason the cohort model works." },
@@ -187,6 +204,7 @@ export default function HomePage() {
                 <div className="cohort-meta-item">📅 <strong>Starts {COHORT.date}</strong> &nbsp;·&nbsp; {COHORT.time}</div>
                 <div className="cohort-meta-item">👥 <strong>Max 20 seats</strong> &nbsp;·&nbsp; Small group, discussion-driven</div>
                 <div className="cohort-meta-item">⏱ <strong>3 live sessions</strong> &nbsp;·&nbsp; Sep 30, Oct 7, Oct 14 &nbsp;·&nbsp; 60-90 min each + 3 weeks capstone build</div>
+                <div className="cohort-meta-item">⏱ <strong>1 BONUS live session</strong> &nbsp;·&nbsp; Build AI Apps & AI Agents with n8n &nbsp;·&nbsp; 60-90 min</div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end' }}>
                 <span className="cohort-badge">{COHORT.seatsLeft} seats left</span>
@@ -231,7 +249,7 @@ export default function HomePage() {
           <div className="container-max">
             <div className="section-label">What you&apos;ll learn</div>
             <h2 className="section-title">The full AI fundamentals and Claude curriculum</h2>
-            <p className="section-sub">Three live sessions, each 60-90 minutes with hands-on activities. Then time to build a capstone project for mentor review.</p>
+            <p className="section-sub">Three live sessions + 1 BONUS session, each 60-90 minutes with hands-on activities. Then time to build a capstone project for mentor review.</p>
 
             <div className="curriculum-wrap" style={{ marginTop: 40 }}>
               {CURRICULUM.map((session) => (

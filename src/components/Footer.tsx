@@ -5,6 +5,15 @@ import FooterSubscribe from './FooterSubscribe';
 type FooterLink =
   | { label: string; href: string }
   | { label: string; static: true };
+type FooterSection = {
+  subheading?: string;
+  links: FooterLink[];
+};
+type FooterColumn = {
+  heading: string;
+  links?: FooterLink[];
+  sections?: FooterSection[];
+};
 
 function FooterLinkItem({ link }: { link: FooterLink }) {
   if ('static' in link) {
@@ -32,14 +41,23 @@ export default function Footer() {
     href: `/blog/${post.slug}`,
   }));
 
-  const footerColumns: { heading: string; links: FooterLink[] }[] = [
+  const footerColumns: FooterColumn[] = [
     {
       heading: 'Company',
-      links: [
-        { label: 'About Us', href: '/about' },
-        { label: 'Contact Us', href: '/contact' },
-        { label: 'Sanskaar Box', href: 'https://sanskaarbox.com' },
-        { label: 'Let Us Home School', href: 'https://letushomeschool.com' },
+      sections: [
+        {
+          links: [
+            { label: 'About Us', href: '/about' },
+            { label: 'Contact Us', href: '/contact' },
+          ],
+        },
+        {
+          subheading: 'Sister Company',
+          links: [
+            { label: 'Sanskaar Box', href: 'https://sanskaarbox.com' },
+            { label: 'Let Us Home School', href: 'https://letushomeschool.com' },
+          ],
+        },
       ],
     },
     {
@@ -77,13 +95,27 @@ export default function Footer() {
           {footerColumns.map((col) => (
             <div key={col.heading} className="footer-col">
               <h4 className="footer-col-heading">{col.heading}</h4>
-              <ul className="footer-col-links">
-                {col.links.map((link) => (
-                  <li key={'href' in link ? `${link.label}-${link.href}` : link.label}>
-                    <FooterLinkItem link={link} />
-                  </li>
-                ))}
-              </ul>
+              {(col.sections ?? [{ links: col.links ?? [] }]).map((section, sectionIndex) => (
+                <div
+                  key={section.subheading ?? `section-${col.heading}-${sectionIndex}`}
+                  className="footer-col-section"
+                >
+                  {section.subheading && <h4 className="footer-col-heading">{section.subheading}</h4>}
+                  <ul className="footer-col-links">
+                    {section.links.map((link) => (
+                      <li
+                        key={
+                          'href' in link
+                            ? `${sectionIndex}-${link.label}-${link.href}`
+                            : `${sectionIndex}-${link.label}`
+                        }
+                      >
+                        <FooterLinkItem link={link} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           ))}
           <FooterSubscribe />

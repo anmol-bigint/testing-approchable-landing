@@ -24,8 +24,8 @@ export function buildCourseSchema(course: CourseContent) {
     : [
         {
           '@type': 'Offer',
-          price: parsePrice(course.pricing.usd.current),
-          priceCurrency: 'USD',
+          price: parsePrice(course.pricing.inr.current),
+          priceCurrency: 'INR',
           availability: 'https://schema.org/InStock',
           url: course.purchaseUrl,
         },

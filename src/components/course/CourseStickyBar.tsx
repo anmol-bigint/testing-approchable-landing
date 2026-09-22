@@ -9,19 +9,7 @@ interface CourseStickyBarProps {
 
 export default function CourseStickyBar({ course }: CourseStickyBarProps) {
   const [visible, setVisible] = useState(false);
-  const [isIntl, setIsIntl] = useState(false);
   const observerTarget = useRef<string>('course-hero');
-
-  useEffect(() => {
-    fetch('https://ipwho.is/')
-      .then((r) => r.json())
-      .then((data) => {
-        if (data?.country_code && data.country_code !== 'IN') {
-          setIsIntl(true);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   useEffect(() => {
     const hero = document.getElementById(observerTarget.current);
@@ -37,7 +25,7 @@ export default function CourseStickyBar({ course }: CourseStickyBarProps) {
     return () => observer.disconnect();
   }, []);
 
-  const price = isIntl ? course.pricing.usd : course.pricing.inr;
+  const price = course.pricing.inr;
   const isFree = course.isFree ?? false;
 
   return (

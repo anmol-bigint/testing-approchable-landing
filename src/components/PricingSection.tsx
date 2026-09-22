@@ -1,8 +1,10 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { COHORT } from '@/lib/cohort-config';
+import { getCohortDisplay } from '@/lib/cohort-price';
 import { trackCTA } from '@/lib/analytics';
+import { usePricingCurrency } from '@/components/PricingCurrencyProvider';
 
 function getTimeLeft(target: number) {
   const diff = target - Date.now();
@@ -15,10 +17,17 @@ function getTimeLeft(target: number) {
   };
 }
 
+const BONUS_STRIKES = {
+  mastery: { INR: '₹1,500', USD: '$70' },
+  n8n: { INR: '₹3,000', USD: '$99' },
+} as const;
+
 export default function PricingSection() {
+  const { currency } = usePricingCurrency();
   const target = new Date(COHORT.priceIncreaseAt).getTime();
   const [isLate, setIsLate] = useState(() => Date.now() >= target);
   const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(target));
+  const display = getCohortDisplay(currency, isLate);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,22 +40,6 @@ export default function PricingSection() {
     }, 1000);
     return () => clearInterval(timer);
   }, [target]);
-
-  const price = useCallback(
-    (field: 'priceIndia' | 'priceIntl' | 'priceTaglineIndia' | 'priceTaglineIntl') => {
-      if (isLate) {
-        const lateMap = {
-          priceIndia: COHORT.priceIndiaLate,
-          priceIntl: COHORT.priceIntlLate,
-          priceTaglineIndia: COHORT.priceTaglineIndiaLate,
-          priceTaglineIntl: COHORT.priceTaglineIntlLate,
-        };
-        return lateMap[field];
-      }
-      return COHORT[field];
-    },
-    [isLate],
-  );
 
   return (
     <section id="pricing">
@@ -82,25 +75,10 @@ export default function PricingSection() {
 
           <div className="pricing-head">
             <div>
-              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
-                India
-              </div>
-              <div>
-                <span className="price-original">{COHORT.originalPriceIndia}</span>
-                <span className="price-main">{price('priceIndia')}</span>
-              </div>
-              <div className="price-sub">{price('priceTaglineIndia')}</div>
+              <span className="price-original">{display.original}</span>
+              <span className="price-main">{display.current}</span>
             </div>
-            <div>
-              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
-                International
-              </div>
-              <div>
-                <span className="price-original">{COHORT.originalPriceIntl}</span>
-                <span className="price-main">{price('priceIntl')}</span>
-              </div>
-              <div className="price-sub">{price('priceTaglineIntl')}</div>
-            </div>
+            {display.tagline ? <div className="price-sub">{display.tagline}</div> : null}
           </div>
 
           <div className="pricing-bonus">
@@ -108,10 +86,23 @@ export default function PricingSection() {
             <div>
               <span className="pricing-bonus-label">Free bonus</span>
               <div className="pricing-bonus-title">
-                <span className="pricing-bonus-strike">₹1,500 / $70</span>AI Mastery for Working Professionals
+                <span className="pricing-bonus-strike">{BONUS_STRIKES.mastery[currency]}</span>AI Mastery for Working Professionals
               </div>
               <div className="pricing-bonus-desc">
                 A self-paced course on weaving AI into your daily work &mdash; included free with this cohort, yours to keep even after it ends.
+              </div>
+            </div>
+          </div>
+
+          <div className="pricing-bonus">
+            <span className="pricing-bonus-icon" aria-hidden="true">🎁</span>
+            <div>
+              <span className="pricing-bonus-label">Free bonus live session</span>
+              <div className="pricing-bonus-title">
+                <span className="pricing-bonus-strike">{BONUS_STRIKES.n8n[currency]}</span>Build AI Apps & AI Agents with n8n
+              </div>
+              <div className="pricing-bonus-desc">
+                A live session on adding intelligence to your applications, and building AI agents with n8n&mdash; included free with this cohort.
               </div>
             </div>
           </div>
@@ -160,7 +151,7 @@ export default function PricingSection() {
             className="pricing-cta"
             onClick={() => trackCTA('Pricing CTA', 'Pricing')}
           >
-            Claim My Seat + Free Bonus Course →
+            Claim My Seat + Free Bonus Courses →
           </a>
           <p className="pricing-note">
             Only {COHORT.seatsLeft} seats · Starts {COHORT.date} · {COHORT.time}
