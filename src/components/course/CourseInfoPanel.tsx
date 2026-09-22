@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import type { CourseContent } from '@/lib/course-content';
 
 interface CourseInfoPanelProps {
@@ -8,20 +7,7 @@ interface CourseInfoPanelProps {
 }
 
 export default function CourseInfoPanel({ course }: CourseInfoPanelProps) {
-  const [isIntl, setIsIntl] = useState(false);
-
-  useEffect(() => {
-    fetch('https://ipwho.is/')
-      .then((r) => r.json())
-      .then((data) => {
-        if (data?.country_code && data.country_code !== 'IN') {
-          setIsIntl(true);
-        }
-      })
-      .catch(() => {});
-  }, []);
-
-  const price = isIntl ? course.pricing.usd : course.pricing.inr;
+  const price = course.pricing.inr;
   const isFree = course.isFree ?? false;
 
   return (

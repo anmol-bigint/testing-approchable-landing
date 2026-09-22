@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import Footer from '@/components/Footer';
+import { PricingCurrencyProvider } from '@/components/PricingCurrencyProvider';
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '@/lib/seo/site';
 import './globals.css';
 
@@ -60,8 +61,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
-        <Footer />
+        <PricingCurrencyProvider>
+          {children}
+          <Footer />
+        </PricingCurrencyProvider>
 
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XG391DQQCV"

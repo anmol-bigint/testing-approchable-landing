@@ -20,8 +20,8 @@ export const COHORT = {
   pricePerSessionIntl: '$67',
   formUrl: 'https://learn.approachable.dev/registration',
 
-  priceIncreaseAt: '2026-09-23T23:59:59+05:30',
-  priceIncreaseDateShort: 'Sep 23',
+  priceIncreaseAt: '2026-09-27T23:59:59+05:30',
+  priceIncreaseDateShort: 'Sep 27',
   priceIndiaLate: '₹9,999',
   priceIntlLate: '$169',
   priceTaglineIndiaLate: "",
