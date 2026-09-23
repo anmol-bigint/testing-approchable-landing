@@ -1037,7 +1037,7 @@ section {
 .footer-static-link {
   color: #A8A29E;
   font-size: 13px;
-  cursor: default;
+  cursor: pointer;
   transition: color 0.15s;
   overflow-wrap: break-word;
   word-break: break-word;
