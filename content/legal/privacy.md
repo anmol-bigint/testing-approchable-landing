@@ -103,7 +103,7 @@ Our website uses essential cookies needed for it to work (for example, keeping y
 
 - Account, registration and course data: for as long as you're an active learner, you can rejoin and access your history, unless you ask us to delete it sooner.
 - Payment and invoice records: up to 8 years, as required by Indian tax and accounting laws.
-- Session recordings: forever
+- Session recordings: up to 3 months after your cohort ends, then deleted or anonymised, unless we state a different period for your cohort.
 - Marketing data: until you unsubscribe or withdraw consent.
 - Testimonials: until you ask us to remove them.
 
