@@ -1128,6 +1128,34 @@ section {
 .placeholder-page a:hover { text-decoration: underline; }
 .placeholder-back { display: inline-block; margin-top: 8px; }
 
+.legal-page {
+  padding: 2.5rem 0 3.5rem;
+}
+.legal-page-article {
+  max-width: 760px;
+}
+.legal-page-article > :first-child {
+  margin-top: 0;
+}
+.legal-page-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+}
+.legal-page-links a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.legal-page-links a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 640px) {
+  .legal-page {
+    padding-top: 1.5rem;
+  }
+}
+
 .support-footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem 24px;

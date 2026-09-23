@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function FooterSubscribe() {
@@ -58,8 +59,12 @@ export default function FooterSubscribe() {
         </form>
       )}
       <div className="footer-subscribe-legal">
-        <span className="footer-static-link">Privacy Policy</span>
-        <span className="footer-static-link">Terms of Service</span>
+        <Link href="/privacy" className="footer-static-link">
+          Privacy Policy
+        </Link>
+        <Link href="/terms" className="footer-static-link">
+          Terms of Service
+        </Link>
       </div>
     </div>
   );
